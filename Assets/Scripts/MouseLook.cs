@@ -14,14 +14,16 @@ public class MouseLook : MonoBehaviour
     }
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        if (!EndGame.end)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
-        xRotate -= mouseY;
-        xRotate = Mathf.Clamp(xRotate, -90f, 90f);
+            xRotate -= mouseY;
+            xRotate = Mathf.Clamp(xRotate, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotate, 0f, 0f);
-        player.Rotate(Vector3.up * mouseX);
-        
+            transform.localRotation = Quaternion.Euler(xRotate, 0f, 0f);
+            player.Rotate(Vector3.up * mouseX);
+        }
     }
 }

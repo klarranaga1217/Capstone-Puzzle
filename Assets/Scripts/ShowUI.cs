@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyItem : MonoBehaviour
+public class ShowUI : MonoBehaviour
 {
     public GameObject uiObject;
+
     void Start()
     {
         uiObject.SetActive(false);
     }
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.name == "Robot Kyle")
+        if (collider.gameObject.name == "Robot Kyle")
         {
-            GameVariables.keys += 1;
-            Debug.Log("key picked up");
-            StartCoroutine(DelayText(2f));
+            StartCoroutine(DelayText(1f));
         }
     }
     IEnumerator DelayText(float waitTime)
@@ -25,6 +24,5 @@ public class KeyItem : MonoBehaviour
         yield return new WaitForSecondsRealtime(waitTime);
         Debug.Log("textDown");
         uiObject.SetActive(false);
-        Destroy(gameObject);
     }
 }
